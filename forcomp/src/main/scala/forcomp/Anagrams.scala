@@ -157,13 +157,13 @@ object Anagrams {
     def iter(occurrences: Occurrences): List[Sentence] = {
       if (occurrences.isEmpty) List(Nil)
       else for {
-        combination <- combinations( occurrences )
+        combination <- combinations(occurrences)
         word <- dictionaryByOccurrences getOrElse (combination, Nil)
-        sentence <- iter( subtract(occurrences,wordOccurrences(word)) )
+        sentence <- iter(subtract(occurrences, wordOccurrences(word)))
         if combination.nonEmpty
       } yield word :: sentence
     }
 
-    iter( sentenceOccurrences(sentence) )
+    iter(sentenceOccurrences(sentence))
   }
 }
